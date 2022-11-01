@@ -34,17 +34,19 @@ function dragover(e) {
 }
 function dragenter(e) {
   const arr = e.target.parentNode.children;
-  const idx = [...arr].indexOf(e.target);
-  refs.headers[idx].classList.add("hovered");
+  const idx = [...arr].indexOf(e.currentTarget);
+  if (e.target === e.currentTarget) refs.headers[idx].classList.add("hovered");
 }
 function dragleave(e) {
   const arr = e.target.parentNode.children;
-  const idx = [...arr].indexOf(e.target);
-  refs.headers[idx].classList.remove("hovered");
+  const idx = [...arr].indexOf(e.currentTarget);
+  if (e.target === e.currentTarget)
+    refs.headers[idx].classList.remove("hovered");
 }
 function dragdrop(e) {
-  e.target.append(refs.item);
+  if (e.target === e.currentTarget) e.target.append(refs.item);
   const arr = e.target.parentNode.children;
-  const idx = [...arr].indexOf(e.target);
-  refs.headers[idx].classList.remove("hovered");
+  const idx = [...arr].indexOf(e.currentTarget);
+  if (e.target === e.currentTarget)
+    refs.headers[idx].classList.remove("hovered");
 }
